@@ -3,6 +3,7 @@ Sui Move Q1 Cohort Prerequistes:
 1. Read these documents
 
    a. https://docs.sui.io/concepts/sui-move-concepts
+
    b. https://docs.sui.io/concepts/object-model
 
 2. Set Up and Install Sui
