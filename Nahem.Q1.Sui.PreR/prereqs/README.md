@@ -9,11 +9,11 @@ Sui Move Q1 Cohort Prerequistes:
 2. Set Up and Install Sui
    https://docs.sui.io/guides/developer/getting-started/sui-install#install-sui-binaries
 
-3. Create a folder in a GitHub repository and name it `your.name.Q1.Sui.PreR``
+3. Create a folder in a GitHub repository and name it `your.name.Q1.Sui.PreR`
 
 4. Put all the following in the folder.
 
-5. Go to Sui By Example - create a new package with: `sui move new prereqs``
+5. Go to Sui By Example - create a new package with: `sui move new prereqs`
 
 In the package, complete the Sui Move examples found in the Sui By Example
 resource, but you will want to adjust function, object, variables names to reflect a more
