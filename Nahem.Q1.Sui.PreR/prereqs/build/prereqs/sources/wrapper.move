@@ -29,5 +29,41 @@ module examples::wrapper {
         object::delete(id);
         contents
     }
+}
 
+module examples::profile {
+    use sui::url::{Self, Url};
+    use std::string::{Self, String};
+    use sui::tx_context::TxContext;
+
+    /// Using wrapper functionality
+    use examples::wrapper::{Self, Wrapper};
+        
+    /// Profile information, not an object, can be wrapped
+    /// into a transferable container.
+    struct ProfileInfo has store {
+        name: String,
+        url: Url,
+    }
+
+    /// Read `name` field from `ProfileInfo`.
+    public fun read_name(p: &ProfileInfo): &String {
+        &p.name
+    }
+
+    /// Read `url` field from `ProfileInfo`.
+    public fun read_url(p: &ProfileInfo): &Url {
+        &p.url
+    }
+
+    /// Create a new `ProfileInfo` and wraps it into `Wrapper`.
+    /// Then transfers it to sender
+    public fun create_profile(name: vector<u8>, url: vector<u8>, ctx: &mut TxContext): Wrapper<ProfileInfo> {
+        let profile = ProfileInfo {
+            name: string::utf8(name),
+            url: url::new_unsafe_from_bytes(url),
+        };
+        wrapper::wrap(profile, ctx)
+    }
+    
 }
