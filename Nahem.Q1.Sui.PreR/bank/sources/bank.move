@@ -97,4 +97,39 @@ module bank::bank {
             ));
         coin::from_balance(fee_balance, ctx)
     }
+
+    #[test]
+    public fun test_deposit() {
+        use sui::test_scenario;
+        use sui::coin::{mint_for_testing};
+
+        // define admin and depositor addresses
+        let admin = @0xAAAA;
+        let depositor = @0xBBBB;
+
+        // first transaction to emulate module initialization
+        let scenario_val = test_scenario::begin(admin);
+        let scenario = &mut scenario_val;
+        init(test_scenario::ctx(scenario));
+
+        // second transaction executed by depositor to deposit
+        test_scenario::next_tx(scenario, depositor);
+
+        // take the shared bank object
+        let bank_share = test_scenario::take_shared<Bank>(scenario);
+
+        // mint 3000 SUI tokens for depositor. 
+        // TODO: make sure this is minted to depositor and not admin
+        let deposit_sui = mint_for_testing<SUI>(3000, test_scenario::ctx(scenario));
+
+        // user depostits 3000 SUI tokens into the bank
+        deposit(&mut bank_share, deposit_sui, test_scenario::ctx(scenario));
+
+        test_scenario::return_shared(bank_share);
+
+
+        // end of test
+        test_scenario::end(scenario_val);
+    }
 }
+
