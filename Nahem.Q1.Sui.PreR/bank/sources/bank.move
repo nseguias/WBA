@@ -125,8 +125,14 @@ module bank::bank {
         // user depostits 3000 SUI tokens into the bank
         deposit(&mut bank_share, deposit_sui, test_scenario::ctx(scenario));
 
+        // returns bank object (is this necessary?)
         test_scenario::return_shared(bank_share);
 
+        // TODO: test withdraw
+
+        // TODO: test partial withdraw
+
+        // TODO: test claim
 
         // end of test
         test_scenario::end(scenario_val);
