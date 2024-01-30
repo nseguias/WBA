@@ -129,9 +129,7 @@ module bank::bank {
         test_scenario::return_shared(bank_share);
 
         // TODO: test withdraw
-
         // TODO: test partial withdraw
-
         // TODO: test claim
 
         // end of test
